@@ -4,7 +4,8 @@
       <%= @registered_application.url %>
   </div>
   <div class="col-md-8">
-    <strong><%= @registered_application.events.count %> associated events</strong>
+    <%= pie_chart @registered_application.events.group(:name).count %>
+    <%= line_chart @registered_application.events.group_by_day(:created_at).count %>
   </div>
   <div class="col-md-4">
     <%= link_to "Edit", edit_registered_application_path(@registered_application), class: 'btn btn-success' %>
